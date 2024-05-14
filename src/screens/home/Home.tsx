@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Row from "./Row";
 import { IoSearch } from "react-icons/io5";
 
@@ -45,6 +45,20 @@ const Home = () => {
       }
     } catch (error) {}
   };
+
+  useEffect(() => {
+    const handleKeyPress = (event: any) => {
+      if (event.key === "Enter") {
+        fetchApi();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [search]);
 
   return (
     <div className="bg-gray-50 flex flex-col items-center ">

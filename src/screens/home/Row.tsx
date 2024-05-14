@@ -45,9 +45,15 @@ const Row = ({ allProps }: any) => {
         </p>
       </div>
       <div className="w-1/4 flex flex-col   justify-center items-center">
-        <p className="font-semibold text-indigo-950 w-[60%] text-center text-sm bg-gray-100 p-2 ">
-          {lowestValue || "No stores selling this product near you"}
-        </p>
+        {lowestValue ? (
+          <p className="font-semibold text-indigo-950 w-[60%] text-center text-xl  p-2 ">
+            From Rs {lowestValue}
+          </p>
+        ) : (
+          <p className="font-semibold text-indigo-950 w-[60%] text-center text-sm bg-gray-100 p-2 ">
+            No stores selling this product near you
+          </p>
+        )}
       </div>
     </div>
   );
