@@ -133,7 +133,7 @@ const Home = () => {
               />
             ))
           ) : (
-            <p className="text-2xl font-semibold text-gray-400 mt-20">
+            <p className="text-xl font-semibold text-gray-400 mt-20">
               {" "}
               * Find medicines with amazing discounts
             </p>
