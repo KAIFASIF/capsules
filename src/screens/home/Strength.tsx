@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { handleStrengthIndex } from "./utils";
+import {
+  handlePackingIndex,
+  handlePricingIndex,
+  handleStrengthIndex,
+} from "./utils";
 
 const Strength = ({ allProps }: any) => {
   const {
@@ -10,6 +14,8 @@ const Strength = ({ allProps }: any) => {
     packingArray,
     setPackingArray,
     rowIndex,
+    pricingArray,
+    setPricingArray,
   } = allProps;
   const salt_Json = ele?.salt_forms_json;
   const obj = salt_Json[formsArray[rowIndex]];
@@ -17,19 +23,26 @@ const Strength = ({ allProps }: any) => {
 
   const handleStrengths = (strengthItem: string) => {
     const formItem = formsArray[rowIndex];
-
     const packingVal = Object.keys(
       ele?.salt_forms_json[formItem][strengthItem]
     )[0];
 
     handleStrengthIndex(
       strengthItem,
-      packingVal,
       rowIndex,
       strengthsArray,
-      setStrengthsArray,
-      packingArray,
-      setPackingArray
+      setStrengthsArray
+    );
+
+    handlePackingIndex(packingVal, rowIndex, packingArray, setPackingArray);
+    handlePricingIndex(
+      ele,
+      formItem,
+      strengthItem,
+      packingVal,
+      rowIndex,
+      pricingArray,
+      setPricingArray
     );
   };
 
@@ -43,13 +56,15 @@ const Strength = ({ allProps }: any) => {
       renderedStrengths.map((item: any, index: number) => (
         <p
           key={index}
-          className={`border-2 px-2 rounded cursor-pointer 
+          className={`border-2  px-2 rounded cursor-pointer 
+          ${
+            pricingArray[rowIndex] ? "border-solid" : "border-dashed"
+          }                
           ${
             strengthsArray[rowIndex] === item
               ? "border-emerald-950"
               : "border-gray-300"
-          }                
-          
+          } 
           `}
           onClick={() => handleStrengths(item)}
         >

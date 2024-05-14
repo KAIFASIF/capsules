@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { handleStrengthIndex } from "./utils";
+import {
+  handlePackingIndex,
+  handlePricingIndex,
+  handleStrengthIndex,
+} from "./utils";
 
 const Forms = ({ allProps }: any) => {
   const {
@@ -10,6 +14,8 @@ const Forms = ({ allProps }: any) => {
     setStrengthsArray,
     packingArray,
     setPackingArray,
+    pricingArray,
+    setPricingArray,
     rowIndex,
   } = allProps;
 
@@ -27,12 +33,20 @@ const Forms = ({ allProps }: any) => {
 
     handleStrengthIndex(
       StrengthVal,
-      packingVal,
       rowIndex,
       strengthsArray,
-      setStrengthsArray,
-      packingArray,
-      setPackingArray
+      setStrengthsArray
+    );
+
+    handlePackingIndex(packingVal, rowIndex, packingArray, setPackingArray);
+    handlePricingIndex(
+      ele,
+      formItem,
+      StrengthVal,
+      packingVal,
+      rowIndex,
+      pricingArray,
+      setPricingArray
     );
   };
 
@@ -49,6 +63,7 @@ const Forms = ({ allProps }: any) => {
         <p
           key={index}
           className={`border-2 px-2  rounded  justify-center cursor-pointer
+          ${pricingArray[rowIndex] ? "border-solid" : "border-dashed"} 
         ${
           formsArray[rowIndex] === item
             ? "border-emerald-950"
