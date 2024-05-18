@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Row from "./Row";
 import { IoSearch } from "react-icons/io5";
 import { handleFlatMap, handleLowestPricing } from "./utils";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 
 const Home = () => {
   const [search, setSearch] = useState("");
