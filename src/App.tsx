@@ -11,6 +11,7 @@ import {
 function App() {
   const Home = lazy(() => import("./screens/home/Home"));
   const GantCharts = lazy(() => import("./screens/gant-charts"));
+  const Currying = lazy(() => import("./screens/tesmp/Currying"));
 
   return (
     <RouterProvider
@@ -31,6 +32,14 @@ function App() {
                 element={
                   <Suspense>
                     <GantCharts />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="currying"
+                element={
+                  <Suspense>
+                    <Currying />
                   </Suspense>
                 }
               />
